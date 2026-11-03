@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Farm Connect – buy straight from the farmer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1f5ee;--surface:#fff;--ink:#17261b;--muted:#566b5b;--line:#d5e0d2;--brand:#2d6a3e;--brand-ink:#fff;--sun:#f0b92b;--deep:#12301c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a13;--surface:#18261d;--ink:#e8f1e9;--muted:#9db3a2;--line:#2a3d2f;--brand:#5fb277;--brand-ink:#0d1a11;--deep:#0a120d}}
+:root[data-theme="dark"]{--bg:#101a13;--surface:#18261d;--ink:#e8f1e9;--muted:#9db3a2;--line:#2a3d2f;--brand:#5fb277;--brand-ink:#0d1a11;--deep:#0a120d}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.15;margin:0}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:"Young Serif",serif;font-size:1.3rem;text-decoration:none}
+.logo span{color:var(--brand)}
+nav{display:flex;gap:18px;font-weight:600;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--ink)}
+.btn{display:inline-block;border:0;cursor:pointer;background:var(--brand);color:var(--brand-ink);font:700 1rem Figtree,sans-serif;padding:12px 22px;border-radius:999px;text-decoration:none}
+.btn:hover{filter:brightness(1.1)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.hero{background:var(--deep);color:#eaf3ea;padding:72px 0 64px}
+.hero h1{font-size:clamp(2.2rem,6vw,3.8rem);max-width:15ch}
+.hero p{max-width:46ch;color:#b9cdbc;margin:18px 0 28px;font-size:1.1rem}
+.hero .btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn.alt{color:#eaf3ea;border-color:#3d5a45}
+.stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:44px;color:#b9cdbc;font-size:.95rem}
+.stats b{display:block;color:var(--sun);font-family:"Young Serif",serif;font-size:1.7rem;font-weight:400}
+section{padding:60px 0}
+section h2{font-size:clamp(1.7rem,4vw,2.3rem);margin-bottom:8px}
+.sub{color:var(--muted);margin:0 0 26px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+input,select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 14px;min-width:0}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+#q{flex:1 1 220px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 15px;border-radius:999px;cursor:pointer;font:600 .9rem Figtree,sans-serif}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.card .em{font-size:2.4rem;line-height:1}
+.card h3{font-size:1.2rem}
+.card .meta{color:var(--muted);font-size:.9rem}
+.card .price{font-weight:700;font-size:1.1rem;margin-top:4px}
+.card .btn{margin-top:auto;padding:9px 16px;font-size:.92rem;text-align:center}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px}
+.steps{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));counter-reset:s;padding:0;list-style:none}
+.steps li{counter-increment:s;border-top:3px solid var(--brand);padding-top:14px}
+.steps li::before{content:counter(s);font-family:"Young Serif",serif;font-size:2rem;color:var(--brand)}
+.steps h3{font-size:1.15rem;margin:4px 0}
+.steps p{margin:0;color:var(--muted)}
+.join{background:var(--surface);border-block:1px solid var(--line)}
+form{display:grid;gap:12px;max-width:480px}
+label{font-weight:600;font-size:.92rem;display:grid;gap:5px}
+.ok{color:var(--brand);font-weight:700;margin-top:6px;min-height:1.6em}
+footer{padding:28px 0;color:var(--muted);font-size:.9rem}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--deep);color:#fff;padding:12px 20px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;max-width:92vw;z-index:20}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media (max-width:560px){nav{display:none}.hero{padding:48px 0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="#top">Farm<span>Connect</span></a>
+  <nav><a href="#market">Marketplace</a><a href="#how">How it works</a><a href="#join">Sell your produce</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+  <h1>Buy straight from the farmer.</h1>
+  <p>Farm Connect links Ugandan farmers with shops, restaurants and families. Farmers set their own prices. Buyers get fresh produce without extra middlemen.</p>
+  <div class="btns"><a class="btn" href="#market" style="background:var(--sun);color:#17261b">Browse produce</a><a class="btn alt" href="#join">I am a farmer</a></div>
+  <div class="stats"><div><b>5</b>districts covered</div><div><b>12</b>produce types</div><div><b>0</b>commission on first sale</div></div>
+</div></div>
+
+<section id="market"><div class="wrap">
+  <h2>Fresh from the farm</h2>
+  <p class="sub">Prices are per unit, in Uganda shillings. Contact the farmer to agree quantity and pickup.</p>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Search produce or farmer" aria-label="Search produce or farmer">
+    <select id="district" aria-label="Filter by district"><option value="">All districts</option></select>
+    <select id="sort" aria-label="Sort"><option value="">Sort: default</option><option value="asc">Price: low to high</option><option value="desc">Price: high to low</option></select>
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Category"></div>
+  <div class="grid" id="grid" aria-live="polite"></div>
+</div></section>
+
+<section id="how" class="join"><div class="wrap">
+  <h2>How Farm Connect works</h2>
+  <p class="sub">Three steps from field to table.</p>
+  <ol class="steps">
+    <li><h3>Farmers list their harvest</h3><p>Add what you grow, how much you have and your price.</p></li>
+    <li><h3>Buyers browse and choose</h3><p>Filter by produce and district to find the closest supply.</p></li>
+    <li><h3>Agree and collect</h3><p>Call or message the farmer, agree the details, then arrange pickup or delivery.</p></li>
+  </ol>
+</div></section>
+
+<section id="join"><div class="wrap">
+  <h2>Sell your produce</h2>
+  <p class="sub">Tell us what you grow and we will get in touch to set up your listing.</p>
+  <form id="form">
+    <label>Your name<input name="name" required autocomplete="name"></label>
+    <label>Phone number<input name="phone" type="tel" required placeholder="07XX XXX XXX" autocomplete="tel"></label>
+    <label>District<select name="district" id="fd" required><option value="">Choose district</option></select></label>
+    <label>What do you grow?<input name="crop" required placeholder="e.g. maize, beans"></label>
+    <button class="btn" type="submit">Request a listing</button>
+    <div class="ok" id="ok" role="status"></div>
+  </form>
+</div></section>
+</main>
+
+<footer><div class="wrap">© Farm Connect. Listings shown are sample data for demonstration.</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+const DATA=[
+{e:"🍌",n:"Matooke",c:"Fruit & veg",f:"Sarah Nakato",d:"Masaka",p:25000,u:"bunch"},
+{e:"🌽",n:"Maize (dry)",c:"Grains",f:"John Okello",d:"Gulu",p:1200,u:"kg"},
+{e:"🫘",n:"Beans",c:"Grains",f:"Grace Atim",d:"Gulu",p:3500,u:"kg"},
+{e:"🍅",n:"Tomatoes",c:"Fruit & veg",f:"Peter Ssemwogerere",d:"Wakiso",p:3000,u:"kg"},
+{e:"☕",n:"Robusta coffee",c:"Cash crops",f:"Moses Kato",d:"Mukono",p:6500,u:"kg"},
+{e:"🥚",n:"Eggs",c:"Livestock",f:"Ruth Tumwine",d:"Mbarara",p:12000,u:"tray"},
+{e:"🥛",n:"Fresh milk",c:"Livestock",f:"Amos Byaruhanga",d:"Mbarara",p:1800,u:"litre"},
+{e:"🍍",n:"Pineapples",c:"Fruit & veg",f:"Mary Namuli",d:"Mukono",p:2500,u:"piece"},
+{e:"🥔",n:"Sweet potatoes",c:"Fruit & veg",f:"David Mugisha",d:"Mbarara",p:1500,u:"kg"},
+{e:"🐟",n:"Tilapia",c:"Livestock",f:"Joseph Lubega",d:"Wakiso",p:9000,u:"kg"},
+{e:"🥜",n:"Groundnuts",c:"Grains",f:"Betty Akello",d:"Gulu",p:4500,u:"kg"},
+{e:"🥭",n:"Mangoes",c:"Fruit & veg",f:"Hassan Ssali",d:"Masaka",p:5000,u:"kg"}];
+const $=s=>document.querySelector(s);
+const cats=[...new Set(DATA.map(x=>x.c))],dists=[...new Set(DATA.map(x=>x.d))].sort();
+let cat="";
+dists.forEach(d=>{$("#district").add(new Option(d,d));$("#fd").add(new Option(d,d))});
+["All",...cats].forEach(c=>{const b=document.createElement("button");b.className="chip";b.textContent=c;
+ b.setAttribute("aria-pressed",c==="All");b.onclick=()=>{cat=c==="All"?"":c;
+ document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));render()};$("#chips").append(b)});
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2800)}
+function render(){
+ const q=$("#q").value.trim().toLowerCase(),d=$("#district").value,s=$("#sort").value;
+ let l=DATA.filter(x=>(!cat||x.c===cat)&&(!d||x.d===d)&&(!q||(x.n+" "+x.f).toLowerCase().includes(q)));
+ if(s)l.sort((a,b)=>s==="asc"?a.p-b.p:b.p-a.p);
+ const g=$("#grid");g.textContent="";
+ if(!l.length){const p=document.createElement("p");p.className="empty";p.textContent="No produce matches your search. Try another district or clear the filters.";g.append(p);return}
+ l.forEach(x=>{const c=document.createElement("article");c.className="card";
+  c.innerHTML='<div class="em" aria-hidden="true"></div><h3></h3><div class="meta"></div><div class="price"></div><button class="btn" type="button">Contact farmer</button>';
+  c.querySelector(".em").textContent=x.e;c.querySelector("h3").textContent=x.n;
+  c.querySelector(".meta").textContent=x.f+", "+x.d;
+  c.querySelector(".price").textContent="UGX "+x.p.toLocaleString("en-UG")+" / "+x.u;
+  c.querySelector("button").onclick=()=>toast("Request sent to "+x.f+". They will call you back.");
+  g.append(c)})}
+["#q","#district","#sort"].forEach(i=>$(i).addEventListener("input",render));
+$("#form").addEventListener("submit",e=>{e.preventDefault();
+ $("#ok").textContent="Thank you, "+e.target.name.value.trim()+". We will call you on "+e.target.phone.value.trim()+" to set up your listing.";
+ e.target.reset()});
+render();
+</script>
+</body>
+</html>
